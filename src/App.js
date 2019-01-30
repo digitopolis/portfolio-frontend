@@ -1,28 +1,38 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ArtistsContainer from './containers/ArtistsContainer'
+import { ARTISTS } from './apiEndpoints'
 import './App.css';
+import { Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+
 
 class App extends Component {
+
+	state = {
+		artists: []
+	}
+
+	componentDidMount() {
+		fetch(ARTISTS)
+			.then(res => res.json())
+			.then(artists => {
+				this.setState({ artists })
+			})
+	}
+	
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Segment>
+				<ArtistsContainer artists={this.state.artists}/>
+      </Segment>
     );
   }
 }
 
-export default App;
+const	mapStateToProps = (state) => {
+	return {
+		selectedArtist: state.selectedArtist
+	}
+}
+
+export default connect(mapStateToProps)(App);
