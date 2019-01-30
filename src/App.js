@@ -1,30 +1,48 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import ArtistsContainer from './containers/ArtistsContainer'
-import { ARTISTS } from './apiEndpoints'
+import ProfileContainer from './containers/ProfileContainer'
+import FormContainer from './containers/FormContainer'
 import './App.css';
-import { Segment } from 'semantic-ui-react'
+import { Segment, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
-
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 class App extends Component {
 
-	state = {
-		artists: []
+
+	mainContent = () => {
+		return (
+			this.props.selectedArtist ? <ProfileContainer /> : <ArtistsContainer />
+		)
 	}
 
-	componentDidMount() {
-		fetch(ARTISTS)
-			.then(res => res.json())
-			.then(artists => {
-				this.setState({ artists })
-			})
+	newArtistForm = () => {
+
 	}
-	
+
   render() {
     return (
-      <Segment>
-				<ArtistsContainer artists={this.state.artists}/>
-      </Segment>
+			<Router>
+				<Fragment>
+					<Menu>
+						<Menu.Item
+							as={ Link }
+							to='/'
+						>
+							Home
+						</Menu.Item>
+						<Menu.Item
+							as={ Link }
+							to='/new'
+						>
+							Signup
+						</Menu.Item>
+					</Menu>
+					<Segment>
+						{this.mainContent()}
+		      </Segment>
+				</Fragment>
+			</Router>
     );
   }
 }

@@ -1,12 +1,13 @@
 const defaultState = {
+	artists: [],
 	selectedArtist: null
 }
 
 const	reducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case 'FIRST_CASE':
-			console.log('hi');
-			break;
+		case 'FETCH_DATA':
+			console.log('fetching..');
+			return {...state, artists: action.payload}
 		default:
 			return state
 	}
