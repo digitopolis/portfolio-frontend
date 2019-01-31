@@ -39,7 +39,9 @@ class App extends Component {
 						</Menu.Item>
 					</Menu>
 					<Segment>
-						{this.mainContent()}
+						<Route exact path='/' render={this.mainContent}/>
+						<Route path='/new' render={() => <FormContainer />}/>
+
 		      </Segment>
 				</Fragment>
 			</Router>

@@ -9,6 +9,8 @@ const	reducer = (state = defaultState, action) => {
 			return {...state, artists: action.payload}
 		case 'SELECT_ARTIST':
 			return {...state, selectedArtist: action.payload}
+		case 'DESELECT_ARTIST':
+			return {...state, selectedArtist: null}
 		default:
 			return state
 	}

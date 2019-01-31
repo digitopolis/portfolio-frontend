@@ -1,13 +1,30 @@
 import React from 'react'
 import ArtistDetails from '../components/ArtistDetails'
-import { Menu } from 'semantic-ui-react'
+import { connect } from 'react-redux'
+import { Menu, Icon } from 'semantic-ui-react'
 
-const ProfileContainer = (props) => {
-	return (
-		<div>
-			<ArtistDetails />
-		</div>
-	)
+
+class ProfileContainer extends React.Component {
+	render () {
+		return (
+			<div>
+				<Menu icon inverted>
+					<Menu.Item
+						name='back'
+						onClick={this.props.deselectArtist}>
+						<Icon name='arrow alternate circle left outline' />
+					</Menu.Item>
+				</Menu>
+				<ArtistDetails />
+			</div>
+		)
+	}
 }
 
-export default ProfileContainer
+const	mapDispatchToProps = (dispatch) => {
+	return {
+		deselectArtist: () => dispatch({type: 'DESELECT_ARTIST'})
+	}
+}
+
+export default connect(null, mapDispatchToProps)(ProfileContainer);

@@ -1,10 +1,16 @@
 import React from 'react'
+import Work from './Work'
 import { connect } from 'react-redux'
+import { Segment } from 'semantic-ui-react'
 
 class ArtistDetails extends React.Component {
 	render () {
 		return (
-			<h1>hi</h1>
+			<Segment>
+				{this.props.artist.works.map(work => {
+					return <Work key={work.id} {...work} />
+				})}
+			</Segment>
 		)
 	}
 }

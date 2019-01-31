@@ -2,6 +2,7 @@ import React from 'react'
 import Artist from '../components/Artist'
 import { ARTISTS } from '../apiEndpoints'
 import { connect } from 'react-redux'
+import { Grid } from 'semantic-ui-react'
 
 class ArtistsContainer extends React.Component {
 
@@ -16,11 +17,20 @@ class ArtistsContainer extends React.Component {
 
 	render () {
 		return (
-			<div>
-				{this.props.artists.map(artist => {
-					return <Artist key={artist.id} {...artist}/>
-				})}
-			</div>
+			<Grid>
+				<Grid.Row>
+					<Grid.Column width={13}>
+						<div>
+							{this.props.artists.map(artist => {
+								return <Artist key={artist.id} {...artist}/>
+							})}
+						</div>
+					</Grid.Column>
+					<Grid.Column width={3}>
+
+					</Grid.Column>
+				</Grid.Row>
+			</Grid>
 		)
 	}
 }
