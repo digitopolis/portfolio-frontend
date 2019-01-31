@@ -1,15 +1,40 @@
 import React from 'react'
-import { Segment } from 'semantic-ui-react'
+import { Segment, Grid, Card } from 'semantic-ui-react'
+import {connect} from 'react-redux'
 
 class Artist extends React.Component {
 	render () {
 		return (
 			<Segment>
-				<img src={this.props.img_url} alt={`${this.props.name}`}/>
-				<h1>{this.props.name}</h1>
+				<Grid celled>
+					<Grid.Row>
+						<Grid.Column width={3}>
+							<img
+								style={{height:100}}
+								src={this.props.img_url}
+								alt={`${this.props.name}`}
+							/>
+						</Grid.Column>
+						<Grid.Column width={13}>
+							<Card
+								link
+								header={this.props.name}
+								meta={`Media: ${this.props.media} | ${this.props.location}`}
+								description={this.props.bio}
+								onClick={() => this.props.selectArtist(this.props.id)}
+							/>
+						</Grid.Column>
+					</Grid.Row>
+				</Grid>
 			</Segment>
 		)
 	}
 }
 
-export default Artist;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		selectArtist: (artist) => dispatch({type: 'SELECT_ARTIST', payload: artist})
+	}
+}
+
+export default connect(null, mapDispatchToProps)(Artist);

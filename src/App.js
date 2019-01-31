@@ -16,9 +16,9 @@ class App extends Component {
 		)
 	}
 
-	newArtistForm = () => {
-
-	}
+	// newArtistForm = () => {
+	//
+	// }
 
   render() {
     return (
