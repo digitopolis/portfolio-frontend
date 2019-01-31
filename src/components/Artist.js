@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 class Artist extends React.Component {
 	render () {
 		return (
-			<Segment>
+
 				<Grid celled>
 					<Grid.Row>
 						<Grid.Column width={3}>
@@ -26,7 +26,7 @@ class Artist extends React.Component {
 						</Grid.Column>
 					</Grid.Row>
 				</Grid>
-			</Segment>
+
 		)
 	}
 }
