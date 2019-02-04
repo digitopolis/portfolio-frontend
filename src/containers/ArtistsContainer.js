@@ -27,7 +27,7 @@ class ArtistsContainer extends React.Component {
 						</div>
 					</Grid.Column>
 					<Grid.Column width={3}>
-
+						<h2>Filter goes here</h2>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

@@ -37,11 +37,17 @@ class App extends Component {
 						>
 							Signup
 						</Menu.Item>
+						<Menu.Item
+							as={ Link }
+							to='/login'
+						>
+							Login
+						</Menu.Item>
 					</Menu>
 					<Segment>
 						<Route exact path='/' render={this.mainContent}/>
 						<Route path='/new' render={() => <FormContainer />}/>
-
+						{/*<Route path='/login'/>*/}
 		      </Segment>
 				</Fragment>
 			</Router>
