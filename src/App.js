@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import ArtistsContainer from './containers/ArtistsContainer'
 import ProfileContainer from './containers/ProfileContainer'
 import FormContainer from './containers/FormContainer'
+import NewWork from './components/NewWork'
 import './App.css';
 import { Segment, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
@@ -48,6 +49,7 @@ class App extends Component {
 						<Route exact path='/' render={this.mainContent}/>
 						<Route path='/new' render={() => <FormContainer />}/>
 						{/*<Route path='/login'/>*/}
+						<Route path='/new_work' render={() => <NewWork />}/>
 		      </Segment>
 				</Fragment>
 			</Router>

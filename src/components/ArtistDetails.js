@@ -1,10 +1,24 @@
 import React from 'react'
 import Work from './Work'
 import { connect } from 'react-redux'
-import { Grid, Image, Header, List } from 'semantic-ui-react'
+import { Redirect } from 'react-router'
+import { Grid, Image, Header, List, Button } from 'semantic-ui-react'
 
 class ArtistDetails extends React.Component {
+
+	state = {
+		newWork: false
+	}
+
+	newWorkForm = () => {
+		const newWork = !this.state.newWork
+		this.setState({ newWork })
+	}
+
 	render () {
+		if (this.state.newWork) {
+			return <Redirect to='/new_work' />
+		}
 		return (
 			<Grid celled='internally'>
 				<Grid.Row>
@@ -25,6 +39,7 @@ class ArtistDetails extends React.Component {
 							</List.Item>
 						</List>
 						<Header size='medium'>{this.props.artist.bio}</Header>
+						<Button onClick={this.newWorkForm}>+ add work</Button>
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>
