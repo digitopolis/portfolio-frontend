@@ -1,13 +1,17 @@
 const defaultState = {
 	artists: [],
-	selectedArtist: null
+	selectedArtist: null,
+	selectedWork: null
 }
 
 const	reducer = (state = defaultState, action) => {
 	switch (action.type) {
-		case 'FETCH_DATA':
+		case 'FETCH_ARTISTS':
 			return {...state,
 				artists: action.payload}
+		case 'FETCH_WORKS':
+			return {...state,
+				works: action.payload}
 		case 'SELECT_ARTIST':
 			return {...state,
 				selectedArtist: action.payload}
@@ -17,6 +21,12 @@ const	reducer = (state = defaultState, action) => {
 		case 'ADD_ARTIST':
 			return {...state,
 				artists: [...state.artists, action.payload]}
+		case 'SELECT_WORK':
+			return {...state,
+				selectedWork: action.payload}
+		case 'DESELECT_WORK':
+			return {...state,
+				selectedWork: null}
 		default:
 			return state
 	}

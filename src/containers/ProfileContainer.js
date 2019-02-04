@@ -2,6 +2,7 @@ import React from 'react'
 import ArtistDetails from '../components/ArtistDetails'
 import { connect } from 'react-redux'
 import { Menu, Icon } from 'semantic-ui-react'
+import WorkDetails from '../components/WorkDetails'
 
 
 class ProfileContainer extends React.Component {
@@ -15,9 +16,15 @@ class ProfileContainer extends React.Component {
 						<Icon name='arrow alternate circle left outline' />
 					</Menu.Item>
 				</Menu>
-				<ArtistDetails />
+				{this.props.selectedWork ? <WorkDetails /> : <ArtistDetails />}
 			</div>
 		)
+	}
+}
+
+const mapStateToProps = (state) => {
+	return {
+		selectedWork: state.selectedWork
 	}
 }
 
@@ -27,4 +34,4 @@ const	mapDispatchToProps = (dispatch) => {
 	}
 }
 
-export default connect(null, mapDispatchToProps)(ProfileContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);

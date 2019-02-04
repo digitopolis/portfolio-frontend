@@ -1,32 +1,30 @@
 import React from 'react'
-import { Segment, Grid, Card } from 'semantic-ui-react'
+import { Grid, Card } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class Artist extends React.Component {
 	render () {
 		return (
-
-				<Grid celled>
-					<Grid.Row>
-						<Grid.Column width={3}>
-							<img
-								style={{width:200}}
-								src={this.props.img_url}
-								alt={`${this.props.name}`}
-							/>
-						</Grid.Column>
-						<Grid.Column width={13}>
-							<Card
-								link
-								header={this.props.name}
-								meta={`Media: ${this.props.media} | ${this.props.location}`}
-								description={this.props.bio}
-								onClick={() => this.props.selectArtist(this.props.id)}
-							/>
-						</Grid.Column>
-					</Grid.Row>
-				</Grid>
-
+			<Grid celled>
+				<Grid.Row>
+					<Grid.Column width={3}>
+						<img
+							style={{width:200}}
+							src={this.props.img_url}
+							alt={`${this.props.name}`}
+						/>
+					</Grid.Column>
+					<Grid.Column width={13}>
+						<Card
+							link
+							header={this.props.name}
+							meta={`Media: ${this.props.media} | ${this.props.location}`}
+							description={this.props.bio}
+							onClick={() => this.props.selectArtist(this.props.id)}
+						/>
+					</Grid.Column>
+				</Grid.Row>
+			</Grid>
 		)
 	}
 }

@@ -1,18 +1,17 @@
 import React from 'react'
 import Artist from '../components/Artist'
-import { ARTISTS } from '../apiEndpoints'
+import { ARTISTS, WORKS } from '../apiEndpoints'
 import { connect } from 'react-redux'
 import { Grid } from 'semantic-ui-react'
 
 class ArtistsContainer extends React.Component {
 
-	componentDidMount() {
-		fetch(ARTISTS)
-			.then(res => res.json())
-			.then(artists => {
-				this.props.fetchArtists(artists)
-			})
+	async componentDidMount() {
+		const artists = await fetch(ARTISTS).then(res => res.json())
+		const works = await fetch(WORKS).then(res => res.json())
 
+		this.props.fetchArtists(artists)
+		this.props.fetchWorks(works)
 	}
 
 	render () {
@@ -43,7 +42,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		fetchArtists: (data) => dispatch({type: 'FETCH_DATA', payload: data})
+		fetchArtists: (data) => dispatch({type: 'FETCH_ARTISTS', payload: data}),
+		fetchWorks: (data) => dispatch({type: 'FETCH_WORKS', payload: data})
 	}
 }
 
