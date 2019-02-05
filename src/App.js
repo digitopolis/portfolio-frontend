@@ -25,7 +25,7 @@ class App extends Component {
     return (
 			<Router>
 				<Fragment>
-					<Menu>
+					<Menu size='huge'>
 						<Menu.Item
 							as={ Link }
 							to='/'
