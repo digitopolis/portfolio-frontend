@@ -30,15 +30,31 @@ class ArtistDetails extends React.Component {
 							size='medium'
 							src={this.props.artist.img_url}
 						/>
-						<List horizontal divided>
-							<List.Item>
-								<List.Content>{this.props.artist.location}</List.Content>
-							</List.Item>
-							<List.Item>
-								<List.Content>{this.props.artist.media}</List.Content>
-							</List.Item>
-						</List>
-						<Header size='medium'>{this.props.artist.bio}</Header>
+						<div>
+							<List horizontal divided>
+								<List.Item>
+									<List.Content>{this.props.artist.location}</List.Content>
+								</List.Item>
+								<List.Item>
+									<List.Content>{this.props.artist.media}</List.Content>
+								</List.Item>
+							</List>
+						</div>
+						<div>
+							<List horizontal>
+								<List.Item>
+									<List.Content>
+										<List.Icon link name='twitter'/>
+									</List.Content>
+								</List.Item>
+								<List.Item>
+									<List.Content>
+										<List.Icon link name='instagram'/>
+									</List.Content>
+								</List.Item>
+							</List>
+						</div>
+						<Header size='large'>{this.props.artist.bio}</Header>
 						<Button onClick={this.newWorkForm}>+ add work</Button>
 					</Grid.Column>
 				</Grid.Row>

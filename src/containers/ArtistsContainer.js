@@ -15,13 +15,15 @@ class ArtistsContainer extends React.Component {
 		this.props.fetchWorks(works)
 	}
 
+
 	render () {
+		const artists = this.props.filtering ? this.props.filteredArtists : this.props.artists
 		return (
 			<Grid>
 				<Grid.Row>
 					<Grid.Column width={13}>
 						<div>
-							{this.props.artists.map(artist => {
+							{artists.map(artist => {
 								return <Artist key={artist.id} {...artist}/>
 							})}
 						</div>
@@ -37,7 +39,9 @@ class ArtistsContainer extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		artists: state.artists
+		artists: state.artists,
+		filteredArtists: state.filteredArtists,
+		filtering: state.filtering
 	}
 }
 

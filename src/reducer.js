@@ -1,7 +1,9 @@
 const defaultState = {
 	artists: [],
+	filteredArtists: [],
 	selectedArtist: null,
-	selectedWork: null
+	selectedWork: null,
+	filtering: false
 }
 
 const	reducer = (state = defaultState, action) => {
@@ -30,6 +32,10 @@ const	reducer = (state = defaultState, action) => {
 		case 'ADD_WORK':
 			return {...state,
 				works: [...state.works, action.payload]}
+		case 'FILTER_ARTISTS':
+			return {...state,
+				filteredArtists: state.artists.filter(a => a.media.includes(action.payload)),
+				filtering: true}
 		default:
 			return state
 	}
