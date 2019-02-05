@@ -1,8 +1,18 @@
 import React from 'react'
-import { Grid, Card } from 'semantic-ui-react'
+import { Grid, Card, Image } from 'semantic-ui-react'
 import {connect} from 'react-redux'
 
 class Artist extends React.Component {
+
+	displayImage = (i) => {
+		const works = this.props.works.reverse()
+		return (
+			<Card>
+				<Image src={works[i].img_url}/>
+			</Card>
+		)
+	}
+
 	render () {
 		return (
 			<Grid celled>
@@ -14,7 +24,7 @@ class Artist extends React.Component {
 							alt={`${this.props.name}`}
 						/>
 					</Grid.Column>
-					<Grid.Column width={13}>
+					<Grid.Column width={4}>
 						<Card
 							link
 							header={this.props.name}
@@ -22,6 +32,12 @@ class Artist extends React.Component {
 							description={this.props.bio}
 							onClick={() => this.props.selectArtist(this.props.id)}
 						/>
+					</Grid.Column>
+					<Grid.Column width={4}>
+						{this.props.works[0] ? this.displayImage(0) : null}
+					</Grid.Column>
+					<Grid.Column width={4}>
+						{this.props.works[1] ? this.displayImage(1) : null}
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

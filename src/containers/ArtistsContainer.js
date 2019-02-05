@@ -1,5 +1,6 @@
 import React from 'react'
 import Artist from '../components/Artist'
+import FilterContainer from './FilterContainer'
 import { ARTISTS, WORKS } from '../apiEndpoints'
 import { connect } from 'react-redux'
 import { Grid } from 'semantic-ui-react'
@@ -26,7 +27,7 @@ class ArtistsContainer extends React.Component {
 						</div>
 					</Grid.Column>
 					<Grid.Column width={3}>
-						<h2>Filter goes here</h2>
+						<FilterContainer />
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

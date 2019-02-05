@@ -4,7 +4,7 @@ import ProfileContainer from './containers/ProfileContainer'
 import FormContainer from './containers/FormContainer'
 import NewWork from './components/NewWork'
 import './App.css';
-import { Segment, Menu } from 'semantic-ui-react'
+import { Segment, Menu, Header } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
@@ -46,6 +46,7 @@ class App extends Component {
 								Login
 							</Menu.Item>
 						</Menu>
+						<h1>Portfolio</h1>
 						<Segment>
 							<Route exact path='/' render={this.mainContent}/>
 							<Route path='/new' render={() => <FormContainer />}/>
