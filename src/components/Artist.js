@@ -9,7 +9,7 @@ class Artist extends React.Component {
 				<Grid.Row>
 					<Grid.Column width={3}>
 						<img
-							style={{width:200}}
+							style={{width: 'auto'}}
 							src={this.props.img_url}
 							alt={`${this.props.name}`}
 						/>

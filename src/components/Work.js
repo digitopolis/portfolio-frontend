@@ -8,6 +8,7 @@ class Work extends React.Component {
 			<Card
 				link
 				onClick={() => this.props.selectWork(this.props.id)}
+				style={{margin: '20px'}}
 			>
 				<Image src={this.props.img_url}/>
 				<Card.Content>

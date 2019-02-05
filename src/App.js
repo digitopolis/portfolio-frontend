@@ -23,36 +23,38 @@ class App extends Component {
 
   render() {
     return (
-			<Router>
-				<Fragment>
-					<Menu size='huge'>
-						<Menu.Item
-							as={ Link }
-							to='/'
-						>
-							Home
-						</Menu.Item>
-						<Menu.Item
-							as={ Link }
-							to='/new'
-						>
-							Signup
-						</Menu.Item>
-						<Menu.Item
-							as={ Link }
-							to='/login'
-						>
-							Login
-						</Menu.Item>
-					</Menu>
-					<Segment>
-						<Route exact path='/' render={this.mainContent}/>
-						<Route path='/new' render={() => <FormContainer />}/>
-						{/*<Route path='/login'/>*/}
-						<Route path='/new_work' render={() => <NewWork />}/>
-		      </Segment>
-				</Fragment>
-			</Router>
+			<div id='main'>
+				<Router>
+					<Fragment>
+						<Menu size='huge'>
+							<Menu.Item
+								as={ Link }
+								to='/'
+							>
+								Home
+							</Menu.Item>
+							<Menu.Item
+								as={ Link }
+								to='/new'
+							>
+								Signup
+							</Menu.Item>
+							<Menu.Item
+								as={ Link }
+								to='/login'
+							>
+								Login
+							</Menu.Item>
+						</Menu>
+						<Segment>
+							<Route exact path='/' render={this.mainContent}/>
+							<Route path='/new' render={() => <FormContainer />}/>
+							{/*<Route path='/login'/>*/}
+							<Route path='/new_work' render={() => <NewWork />}/>
+			      </Segment>
+					</Fragment>
+				</Router>
+			</div>
     );
   }
 }
