@@ -43,7 +43,7 @@ class ArtistDetails extends React.Component {
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>
-					{this.props.artist.works.map(work => {
+					{this.props.works.map(work => {
 						return <Work key={work.id} {...work} />
 					})}
 				</Grid.Row>
@@ -54,7 +54,8 @@ class ArtistDetails extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		artist: state.artists.find(a => a.id === state.selectedArtist)
+		artist: state.artists.find(a => a.id === state.selectedArtist),
+		works: state.works.filter(w => w.artist_id === state.selectedArtist)
 	}
 }
 

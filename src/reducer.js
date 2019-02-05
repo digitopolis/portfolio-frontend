@@ -27,6 +27,9 @@ const	reducer = (state = defaultState, action) => {
 		case 'DESELECT_WORK':
 			return {...state,
 				selectedWork: null}
+		case 'ADD_WORK':
+			return {...state,
+				works: [...state.works, action.payload]}
 		default:
 			return state
 	}

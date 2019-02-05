@@ -2,6 +2,7 @@ import React from 'react'
 import { Form } from 'semantic-ui-react'
 import { WORKS } from '../apiEndpoints'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 
 class NewWork extends React.Component {
 
@@ -25,21 +26,23 @@ class NewWork extends React.Component {
 	handleSubmit = () => {
 		const {submitted, ...data} = this.state
 		const workInfo = {...data, artist_id: this.props.artist}
-		console.log(workInfo);
-		// fetch(WORKS, {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 		'Accept': 'application/json'
-		// 	},
-		// 	body: JSON.stringify(data)
-		// }).then(res => res.json())
-		// .then(artist => this.props.addArtist(artist))
-		// .then(this.setState({submitted: true}))
+		fetch(WORKS, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(workInfo)
+		}).then(res => res.json())
+		.then(work => this.props.addWork(work))
+		.then(this.setState({submitted: true}))
 
 	}
 
 	render () {
+		if (this.state.submitted) {
+			return <Redirect to='/'/>
+		}
 		return (
 			<Form
 				size='big'
