@@ -14,7 +14,7 @@ class Work extends React.Component {
 				<Card.Content>
 					<Card.Header>{this.props.title}</Card.Header>
 					<Card.Meta>{this.props.media}</Card.Meta>
-					<Card.Description>{this.props.statement}</Card.Description>
+					<Card.Description>{`${this.props.statement.slice(0, 200)}...`}</Card.Description>
 				</Card.Content>
 				<Card.Content extra>{this.props.year}</Card.Content>
 			</Card>

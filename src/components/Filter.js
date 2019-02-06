@@ -20,7 +20,7 @@ class Filter extends React.Component {
 	render () {
 		return (
 			<div>
-				<h1>filter goes here</h1>
+				<h3>Search by media:</h3>
 				<Form onSubmit={this.handleSubmit}>
 					<Form.Input
 						icon='search'

@@ -5,10 +5,10 @@ import {connect} from 'react-redux'
 class Artist extends React.Component {
 
 	displayImage = (i) => {
-		const works = this.props.works.reverse()
+		const works = this.props.works
 		return (
 			<Card>
-				<Image src={works[i].img_url}/>
+				<Image src={works[works.length - i].img_url}/>
 			</Card>
 		)
 	}
@@ -28,16 +28,16 @@ class Artist extends React.Component {
 						<Card
 							link
 							header={this.props.name}
-							meta={`Media: ${this.props.media} | ${this.props.location}`}
-							description={this.props.bio}
+							meta={`${this.props.media} | ${this.props.location}`}
+							description={`${this.props.bio.slice(0, 150)}...`}
 							onClick={() => this.props.selectArtist(this.props.id)}
 						/>
 					</Grid.Column>
 					<Grid.Column width={4}>
-						{this.props.works[0] ? this.displayImage(0) : null}
+						{this.props.works[0] ? this.displayImage(1) : null}
 					</Grid.Column>
 					<Grid.Column width={4}>
-						{this.props.works[1] ? this.displayImage(1) : null}
+						{this.props.works[1] ? this.displayImage(2) : null}
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>

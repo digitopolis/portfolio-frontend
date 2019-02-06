@@ -15,7 +15,9 @@ class WorkDetails extends React.Component {
 				</Grid.Row>
 				<Grid.Row>
 					<Grid.Column width={10}>
-						<Image src={this.props.work.img_url}/>
+						<Image
+							src={this.props.work.img_url}
+							floated='right'/>
 					</Grid.Column>
 					<Grid.Column width={4}>
 						<List>
