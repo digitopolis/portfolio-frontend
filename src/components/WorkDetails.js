@@ -1,8 +1,23 @@
 import React from 'react'
+import { WORKS } from '../apiEndpoints'
 import { connect } from 'react-redux'
+// import { Redirect } from 'react-router'
 import { Grid, Icon, Button, Image, List } from 'semantic-ui-react'
 
 class WorkDetails extends React.Component {
+
+	handleDelete = () => {
+		const id = this.props.work.id
+		this.props.deselectWork()
+		fetch(WORKS + id, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			}
+		}).then(() => this.props.deleteWork(id))
+	}
+
 	render () {
 		return (
 			<Grid>
@@ -40,6 +55,7 @@ class WorkDetails extends React.Component {
 								<List.Content>{this.props.work.statement}</List.Content>
 							</List.Item>
 						</List>
+						<Button onClick={this.handleDelete}>Delete</Button>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
@@ -56,7 +72,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		deselectWork: () => dispatch({type: 'DESELECT_WORK'})
+		deselectWork: () => dispatch({type: 'DESELECT_WORK'}),
+		deleteWork: (work) => dispatch({type: 'DELETE_WORK', payload: work})
 	}
 }
 

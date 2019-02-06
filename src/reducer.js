@@ -32,9 +32,12 @@ const	reducer = (state = defaultState, action) => {
 		case 'ADD_WORK':
 			return {...state,
 				works: [...state.works, action.payload]}
+		case 'DELETE_WORK':
+			return {...state,
+			works: state.works.filter(w => w.id !== action.payload)}
 		case 'FILTER_ARTISTS':
 			return {...state,
-				filteredArtists: state.artists.filter(a => a.media.includes(action.payload)),
+				filteredArtists: state.artists.filter(a => a.media.toLowerCase().includes(action.payload)),
 				filtering: true}
 		default:
 			return state

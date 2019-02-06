@@ -35,12 +35,12 @@ class App extends Component {
 							>
 								Signup
 							</Menu.Item>
-							<Menu.Item
+							{/*<Menu.Item
 								as={ Link }
 								to='/login'
 							>
 								Login
-							</Menu.Item>
+							</Menu.Item>*/}
 						</Menu>
 						<h1>Portfolio</h1>
 						<Segment>
