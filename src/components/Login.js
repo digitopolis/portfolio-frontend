@@ -28,7 +28,7 @@ class Login extends React.Component {
 			body: JSON.stringify(payload)
 		}).then(res => res.json())
 		.then(res => {
-			res.message ? alert(res.message) : console.log('hi')
+			res.message ? alert(res.message) : console.log(res)
 		})
 	}
 

@@ -8,11 +8,15 @@ import { connect } from 'react-redux'
 class NewArtist extends React.Component {
 
 	state = {
+		username: '',
+		password: '',
 		name: '',
 		location: '',
 		media: '',
 		bio: '',
 		img_url: '',
+		twitter: '',
+		instagram: '',
 		submitted: false
 	}
 
@@ -48,6 +52,23 @@ class NewArtist extends React.Component {
 				<Form onSubmit={this.handleSubmit}>
 					<Form.Group widths='equal'>
 						<Form.Input
+							required
+							name='username'
+							label='Username'
+							placeholder='Username'
+							onChange={this.handleChange}
+						/>
+						<Form.Input
+							required
+							type='password'
+							name='password'
+							label='Password'
+							placeholder='Password'
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
+					<Form.Group widths='equal'>
+						<Form.Input
 							name='name'
 							label='Name'
 							placeholder='Name'
@@ -71,6 +92,20 @@ class NewArtist extends React.Component {
 							name='media'
 							label='Primary Media'
 							placeholder='List favored media'
+							onChange={this.handleChange}
+						/>
+					</Form.Group>
+					<Form.Group widths='equal'>
+						<Form.Input
+							name='twitter'
+							label='Twitter account'
+							placeholder='Twitter account'
+							onChange={this.handleChange}
+						/>
+						<Form.Input
+							name='instagram'
+							label='Instagram account'
+							placeholder='Instagram account'
 							onChange={this.handleChange}
 						/>
 					</Form.Group>
