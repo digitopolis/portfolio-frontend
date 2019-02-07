@@ -3,6 +3,7 @@ import ArtistsContainer from './containers/ArtistsContainer'
 import ProfileContainer from './containers/ProfileContainer'
 import FormContainer from './containers/FormContainer'
 import NewWork from './components/NewWork'
+import Login from './components/Login'
 import './App.css';
 import { Segment, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
@@ -35,18 +36,18 @@ class App extends Component {
 							>
 								Signup
 							</Menu.Item>
-							{/*<Menu.Item
+							<Menu.Item
 								as={ Link }
 								to='/login'
 							>
 								Login
-							</Menu.Item>*/}
+							</Menu.Item>
 						</Menu>
 						<h1>Portfolio</h1>
 						<Segment>
 							<Route exact path='/' render={this.mainContent}/>
 							<Route path='/new' render={() => <FormContainer />}/>
-							{/*<Route path='/login'/>*/}
+							<Route path='/login' render={() => <Login />}/>
 							<Route path='/new_work' render={() => <NewWork />}/>
 			      </Segment>
 					</Fragment>
