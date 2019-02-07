@@ -1,4 +1,5 @@
 import React from 'react'
+import { LOGIN } from '../apiEndpoints'
 import { Form, Segment } from 'semantic-ui-react'
 
 class Login extends React.Component {
@@ -16,6 +17,21 @@ class Login extends React.Component {
 		this.setState({ [name]: value })
 	}
 
+	handleSubmit = () => {
+		const payload = this.state
+		fetch(LOGIN, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+				'Accept': 'application/json'
+			},
+			body: JSON.stringify(payload)
+		}).then(res => res.json())
+		.then(res => {
+			res.message ? alert(res.message) : console.log('hi')
+		})
+	}
+
 	render () {
 		return (
 			<div className='centered'>
@@ -23,7 +39,8 @@ class Login extends React.Component {
 					className='login'
 					style={{backgroundColor: '#eaeaea'}}>
 					<h1>log in!</h1>
-					<Form>
+					<Form
+						onSubmit={this.handleSubmit}>
 						<Form.Input
 							name='username'
 							label='Username'
