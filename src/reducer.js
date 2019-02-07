@@ -3,6 +3,7 @@ const defaultState = {
 	filteredArtists: [],
 	selectedArtist: null,
 	selectedWork: null,
+	currentUser: null,
 	filtering: false
 }
 
@@ -39,6 +40,9 @@ const	reducer = (state = defaultState, action) => {
 			return {...state,
 				filteredArtists: state.artists.filter(a => a.media.toLowerCase().includes(action.payload)),
 				filtering: true}
+		case 'USER_LOGIN':
+			return {...state,
+				currentUser: state.artists.find(a => a.id === action.payload)}
 		default:
 			return state
 	}

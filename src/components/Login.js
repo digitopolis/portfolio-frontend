@@ -1,6 +1,7 @@
 import React from 'react'
 import { LOGIN } from '../apiEndpoints'
 import { Form, Segment } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 class Login extends React.Component {
 
@@ -28,8 +29,14 @@ class Login extends React.Component {
 			body: JSON.stringify(payload)
 		}).then(res => res.json())
 		.then(res => {
-			res.message ? alert(res.message) : console.log(res)
+			res.message ? alert(res.message) : this.handleLogin(res)
 		})
+	}
+
+	handleLogin = (res) => {
+		const user = res.user
+		localStorage.setItem('jwt', res.jwt)
+		this.props.loginUser(user.id)
 	}
 
 	render () {
@@ -62,4 +69,10 @@ class Login extends React.Component {
 	}
 }
 
-export default Login;
+const mapDispatchToProps = (dispatch) => {
+	return {
+		loginUser: (user) => dispatch({type: 'USER_LOGIN', payload: user})
+	}
+}
+
+export default connect(null, mapDispatchToProps)(Login);
