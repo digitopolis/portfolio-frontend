@@ -1,5 +1,5 @@
 import React from 'react'
-import { Segment, Form } from 'semantic-ui-react'
+import { Segment, Form, Message, Icon } from 'semantic-ui-react'
 import { ARTISTS } from '../apiEndpoints'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
@@ -130,6 +130,10 @@ class NewArtist extends React.Component {
 					/>
 				<Form.Button>Submit</Form.Button>
 				</Form>
+				<Message attached='bottom' warning>
+					<Icon name='help' />
+					Already signed up?&nbsp;<a href='/login'>Login here</a>&nbsp;instead.
+				</Message>
 			</Segment>
 		)
 	}
