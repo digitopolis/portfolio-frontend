@@ -55,7 +55,7 @@ class WorkDetails extends React.Component {
 								<List.Content>{this.props.work.statement}</List.Content>
 							</List.Item>
 						</List>
-						<Button onClick={this.handleDelete}>Delete</Button>
+						{this.props.artist.id === this.props.currentUser.id ? <Button onClick={this.handleDelete}>Delete</Button> : null}
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
@@ -67,7 +67,8 @@ class WorkDetails extends React.Component {
 const mapStateToProps = (state) => {
 	const work = state.works.find(w => w.id === state.selectedWork)
 	const artist = state.artists.find(a => a.id === work.artist_id)
-	return { work, artist }
+	const currentUser = state.currentUser
+	return { work, artist, currentUser }
 }
 
 const mapDispatchToProps = (dispatch) => {

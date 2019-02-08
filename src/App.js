@@ -4,6 +4,7 @@ import ProfileContainer from './containers/ProfileContainer'
 import FormContainer from './containers/FormContainer'
 import NewWork from './components/NewWork'
 import Login from './components/Login'
+import UserProfile from './components/UserProfile'
 import './App.css';
 import { Segment, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
@@ -42,6 +43,12 @@ class App extends Component {
 							>
 								Login
 							</Menu.Item>
+							<Menu.Item
+								as={ Link }
+								to='/profile'
+							>
+								Profile
+							</Menu.Item>
 						</Menu>
 						<h1>Portfolio</h1>
 						<Segment>
@@ -49,6 +56,7 @@ class App extends Component {
 							<Route path='/new' render={() => <FormContainer />}/>
 							<Route path='/login' render={() => <Login />}/>
 							<Route path='/new_work' render={() => <NewWork />}/>
+							<Route path='/profile' render={() => <UserProfile />}/>
 			      </Segment>
 					</Fragment>
 				</Router>

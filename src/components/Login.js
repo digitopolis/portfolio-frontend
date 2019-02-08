@@ -35,6 +35,7 @@ class Login extends React.Component {
 
 	handleLogin = (res) => {
 		const user = res.user
+		console.log(res);
 		localStorage.setItem('jwt', res.jwt)
 		this.props.loginUser(user.id)
 	}
