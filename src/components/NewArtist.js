@@ -38,9 +38,22 @@ class NewArtist extends React.Component {
 			},
 			body: JSON.stringify(data)
 		}).then(res => res.json())
-		.then(artist => this.props.addArtist(artist))
-		.then(this.setState({submitted: true}))
+		.then(this.handleResponse)
+		// .then(artist => this.props.addArtist(artist))
+		// .then(this.setState({submitted: true}))
 
+	}
+
+	handleResponse = (res) => {
+		console.log(res);
+		if (res.artist) {
+			this.props.addArtist(res.artist)
+			this.props.loginUser(res.artist.id)
+			localStorage.setItem('jwt', res.jwt)
+			this.setState({
+				submitted: true
+			})
+		}
 	}
 
 	render () {
@@ -124,7 +137,8 @@ class NewArtist extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		addArtist: (artist) => dispatch({type: 'ADD_ARTIST', payload: artist})
+		addArtist: (artist) => dispatch({type: 'ADD_ARTIST', payload: artist}),
+		loginUser: (user) => dispatch({type: 'USER_LOGIN', payload: user})
 	}
 }
 
