@@ -2,12 +2,15 @@ import React from 'react'
 import { LOGIN } from '../apiEndpoints'
 import { Form, Segment } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
 
 class Login extends React.Component {
 
 	state = {
 		username: '',
-		password: ''
+		password: '',
+		message: '',
+		loggedIn: false
 	}
 
 	handleChange = (event) => {
@@ -29,24 +32,35 @@ class Login extends React.Component {
 			body: JSON.stringify(payload)
 		}).then(res => res.json())
 		.then(res => {
-			res.message ? alert(res.message) : this.handleLogin(res)
+			res.message ? this.showErrors(res.message) : this.handleLogin(res)
 		})
 	}
 
 	handleLogin = (res) => {
 		const user = res.user
-		console.log(res);
 		localStorage.setItem('jwt', res.jwt)
 		this.props.loginUser(user.id)
+		this.setState({
+			message: '',
+			loggedIn: !this.state.loggedIn
+		})
+	}
+
+	showErrors = (message) => {
+		this.setState({ message })
 	}
 
 	render () {
+		if (this.state.loggedIn) {
+			return <Redirect to='/profile'/>
+		}
 		return (
 			<div className='centered'>
 				<Segment
 					className='login'
 					style={{backgroundColor: '#eaeaea'}}>
 					<h1>log in!</h1>
+					{this.state.message === '' ? null : <h3>{this.state.message}</h3>}
 					<Form
 						onSubmit={this.handleSubmit}>
 						<Form.Input

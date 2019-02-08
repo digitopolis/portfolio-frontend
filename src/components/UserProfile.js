@@ -13,7 +13,6 @@ class UserProfile extends React.Component {
 
 	componentDidMount() {
 		const jwt = localStorage.getItem('jwt')
-		console.log(jwt);
 		fetch(PROFILE, {
 			method: 'GET',
 			headers: {
