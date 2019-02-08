@@ -55,7 +55,7 @@ class ArtistDetails extends React.Component {
 							</List>
 						</div>
 						<Header size='large'>{this.props.artist.bio}</Header>
-						<Button onClick={this.newWorkForm}>+ add work</Button>
+						{this.props.currentUser && this.props.artist.id === this.props.currentUser.id ? <Button onClick={this.newWorkForm}>+ add work</Button> : null}
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>
@@ -71,7 +71,8 @@ class ArtistDetails extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		artist: state.artists.find(a => a.id === state.selectedArtist),
-		works: state.works.filter(w => w.artist_id === state.selectedArtist)
+		works: state.works.filter(w => w.artist_id === state.selectedArtist),
+		currentUser: state.currentUser
 	}
 }
 

@@ -55,7 +55,7 @@ class WorkDetails extends React.Component {
 								<List.Content>{this.props.work.statement}</List.Content>
 							</List.Item>
 						</List>
-						{this.props.artist.id === this.props.currentUser.id ? <Button onClick={this.handleDelete}>Delete</Button> : null}
+						{this.props.currentUser && this.props.artist.id === this.props.currentUser.id ? <Button onClick={this.handleDelete}>Delete</Button> : null}
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
