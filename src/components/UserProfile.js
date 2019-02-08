@@ -8,7 +8,8 @@ import { Grid, Image, Header, List, Button } from 'semantic-ui-react'
 class UserProfile extends React.Component {
 
 	state = {
-		newWork: false
+		newWork: false,
+		editProfile: false
 	}
 
 	componentDidMount() {
@@ -27,9 +28,17 @@ class UserProfile extends React.Component {
 		this.setState({ newWork })
 	}
 
+	editProfile = () => {
+		const editProfile = !this.state.editProfile
+		this.setState({ editProfile })
+	}
+
 	render () {
 		if (this.state.newWork) {
 			return <Redirect to='/new_work' />
+		}
+		if (this.state.editProfile) {
+			return <Redirect to='/profile/edit' />
 		}
 		return (
 			<Grid celled='internally'>
@@ -68,6 +77,7 @@ class UserProfile extends React.Component {
 						</div>
 						<Header size='large'>{this.props.artist.bio}</Header>
 						<Button onClick={this.newWorkForm}>+ add work</Button>
+						<Button onClick={this.editProfile}>Edit profile</Button>
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>

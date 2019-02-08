@@ -6,6 +6,7 @@ import NewWork from './components/NewWork'
 import Login from './components/Login'
 import UserProfile from './components/UserProfile'
 import ErrorPage from './components/ErrorPage'
+import EditProfile from './components/EditProfile'
 import './App.css';
 import { Segment, Menu } from 'semantic-ui-react'
 import { connect } from 'react-redux'
@@ -63,7 +64,8 @@ class App extends Component {
 							<Route path='/new' render={() => <FormContainer />}/>
 							<Route path='/login' render={() => <Login />}/>
 							<Route path='/new_work' render={() => <NewWork />}/>
-							<Route path='/profile' render={this.userProfile}/>
+							<Route exact path='/profile' render={this.userProfile}/>
+							<Route path='/profile/edit' render={() => <EditProfile />}/>
 			      </Segment>
 					</Fragment>
 				</Router>
