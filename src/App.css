@@ -10,6 +10,14 @@ h1 {
 	font-size: 60px;
 }
 
+a {
+	color: black;
+}
+
+.link:hover {
+	cursor: pointer;
+}
+
 .centered {
 	width: 400px;
 	height: 500px;

@@ -27,6 +27,12 @@ class App extends Component {
 		)
 	}
 
+	returnHome = () => {
+		this.props.deselectWork()
+		this.props.deselectArtist()
+		// return <Redirect to='/'/>
+	}
+
   render() {
     return (
 			<div id='main'>
@@ -35,6 +41,7 @@ class App extends Component {
 						<Menu size='huge'>
 							<Menu.Item
 								as={ Link }
+								onClick={this.returnHome}
 								to='/'
 							>
 								Home
@@ -81,4 +88,11 @@ const	mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(App);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		deselectWork: () => dispatch({type: 'DESELECT_WORK'}),
+		deselectArtist: () => dispatch({type: 'DESELECT_ARTIST'})
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
