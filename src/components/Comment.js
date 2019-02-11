@@ -1,17 +1,31 @@
 import React from 'react'
 import { List } from 'semantic-ui-react'
+import { connect } from 'react-redux'
 
 
 class Comment extends React.Component {
+
+	findArtist = () => {
+		return this.props.artists.find(a => a.id === this.props.artist_id)
+	}
+
 	render () {
+		const artist = this.findArtist()
 		return (
 			<List.Item>
 				<List.Content>
-					<List.Header>{this.props.content}</List.Header>
+					<List.Header>{artist.name}</List.Header>
+					<List.Description>{this.props.content}</List.Description>
 				</List.Content>
 			</List.Item>
 		)
 	}
 }
 
-export default Comment;
+const mapStateToProps = (state) => {
+	return {
+		artists: state.artists
+	}
+}
+
+export default connect(mapStateToProps)(Comment)

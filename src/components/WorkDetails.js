@@ -60,12 +60,10 @@ class WorkDetails extends React.Component {
 					</Grid.Column>
 				</Grid.Row>
 					<Divider horizontal>Comments</Divider>
-				<Grid.Row>
+				<Grid.Row style={{paddingLeft: '30px'}}>
 					<CommentsContainer comments={this.props.work.comments}/>
 				</Grid.Row>
 			</Grid>
-
-
 		)
 	}
 }
