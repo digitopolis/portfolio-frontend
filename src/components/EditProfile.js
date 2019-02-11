@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form, Segment } from 'semantic-ui-react'
+import { Form, Segment, Button } from 'semantic-ui-react'
 import { ARTISTS } from '../apiEndpoints'
 import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
@@ -54,6 +54,12 @@ class EditProfile extends React.Component {
 				submitted: true
 			})
 		}
+	}
+
+	handleCancel = () => {
+		this.setState({
+			submitted: true
+		})
 	}
 
 	render () {
@@ -113,7 +119,14 @@ class EditProfile extends React.Component {
 						placeholder={artist.bio}
 						onChange={this.handleChange}
 					/>
-				<Form.Button>Submit</Form.Button>
+				<Button type='submit'>Submit</Button>
+				<Button
+					secondary
+					type='button'
+					onClick={this.handleCancel}
+				>
+					Cancel
+				</Button>
 				</Form>
 			</Segment>
 		)
