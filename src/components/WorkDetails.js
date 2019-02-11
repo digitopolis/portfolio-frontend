@@ -1,8 +1,9 @@
 import React from 'react'
 import { WORKS } from '../apiEndpoints'
+import CommentsContainer from '../containers/CommentsContainer'
 import { connect } from 'react-redux'
 // import { Redirect } from 'react-router'
-import { Grid, Icon, Button, Image, List } from 'semantic-ui-react'
+import { Grid, Icon, Button, Image, List, Divider } from 'semantic-ui-react'
 
 class WorkDetails extends React.Component {
 
@@ -58,7 +59,12 @@ class WorkDetails extends React.Component {
 						{this.props.currentUser && this.props.artist.id === this.props.currentUser.id ? <Button onClick={this.handleDelete}>Delete</Button> : null}
 					</Grid.Column>
 				</Grid.Row>
+					<Divider horizontal>Comments</Divider>
+				<Grid.Row>
+					<CommentsContainer comments={this.props.work.comments}/>
+				</Grid.Row>
 			</Grid>
+
 
 		)
 	}
