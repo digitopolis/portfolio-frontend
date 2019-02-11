@@ -1,21 +1,33 @@
 import React from 'react'
 import Comment from '../components/Comment'
+import CommentForm from '../components/CommentForm'
 import { List, Button, Message, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class CommentsContainer extends React.Component {
 
+	state = {
+		newComment: false
+	}
+
 	addComments = () => {
 		if (this.props.currentUser) {
-			return <Button>+ add comment</Button>
+			return <Button onClick={this.showCommentForm}>+ add comment</Button>
 		} else {
 			return (
 				<Message attached='bottom' warning>
 					<Icon name='exclamation circle' />
-					Please login to leave a comment.
+					Please <Link to='/login'>Login</Link> to leave a comment.
 				</Message>
 			)
 		}
+	}
+
+	showCommentForm = () => {
+		this.setState({
+			newComment: true
+		})
 	}
 
 	render() {
@@ -27,6 +39,7 @@ class CommentsContainer extends React.Component {
 					})}
 				</List>
 				{this.addComments()}
+				{this.state.newComment ? <CommentForm /> : null}
 			</div>
 		)
 	}
