@@ -1,6 +1,7 @@
 import React from 'react'
 import { Form, Segment } from 'semantic-ui-react'
 import { ARTISTS } from '../apiEndpoints'
+import { Redirect } from 'react-router'
 import { connect } from 'react-redux'
 
 class EditProfile extends React.Component {
@@ -26,6 +27,12 @@ class EditProfile extends React.Component {
 
 	handleSubmit = () => {
 		const {submitted, ...data} = this.state
+		let updatedData = {}
+		for (var attribute in data) {
+			if (data[attribute] !== '') {
+				updatedData[attribute] = data[attribute]
+			}
+		}
 		const jwt = localStorage.getItem('jwt')
 		fetch(`${ARTISTS}/${this.props.artist.id}`, {
 			method: 'PATCH',
@@ -34,17 +41,26 @@ class EditProfile extends React.Component {
 				'Accept': 'application/json',
 				'Authorization': `Bearer ${jwt}`
 			},
-			body: JSON.stringify(data)
+			body: JSON.stringify(updatedData)
 		}).then(res => res.json())
 		.then(this.handleResponse)
 	}
 
 	handleResponse = (res) => {
 		console.log(res);
+		if (res.artist) {
+			this.props.updateArtist(res.artist)
+			this.setState({
+				submitted: true
+			})
+		}
 	}
 
 	render () {
 		const artist = this.props.artist
+		if (this.state.submitted) {
+			return <Redirect to='/profile' />
+		}
 		return (
 			<Segment>
 				<h3>Edit your profile, {artist.username}</h3>
@@ -110,4 +126,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(EditProfile);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		updateArtist: (artist) => dispatch({type: 'UPDATE_ARTIST', payload: artist})
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditProfile);

@@ -43,6 +43,9 @@ const	reducer = (state = defaultState, action) => {
 		case 'USER_LOGIN':
 			return {...state,
 				currentUser: state.artists.find(a => a.id === action.payload)}
+		case 'UPDATE_ARTIST':
+			return {...state,
+				artists: [...state.artists.filter(a => a.id !== action.payload.id), action.payload]}
 		default:
 			return state
 	}
