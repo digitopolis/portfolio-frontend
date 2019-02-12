@@ -4,11 +4,15 @@ import { List } from 'semantic-ui-react'
 
 const WorkComments = (props) => {
 	return (
-		<List divided size='huge'>
-			{props.comments.map(comment => {
-				return <Comment key={comment.id} {...comment}/>
-			})}
-		</List>
+		<div>
+			<h2>On {props.title}:</h2>
+			<List divided size='huge'>
+				{props.comments.map(comment => {
+					return <Comment key={comment.id} {...comment}/>
+				})}
+			</List>
+		</div>
+
 	)
 }
 

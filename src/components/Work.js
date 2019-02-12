@@ -3,6 +3,7 @@ import { Card, Image } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class Work extends React.Component {
+
 	render() {
 		return (
 			<Card

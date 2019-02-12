@@ -6,7 +6,7 @@ class UserComments extends React.Component {
 	render () {
 		return (
 			<div>
-				<h1>user comments</h1>
+				<h3>Comments</h3>
 				{this.props.works.map(work => {
 					return <WorkComments key={work.id} {...work} />
 				})}
