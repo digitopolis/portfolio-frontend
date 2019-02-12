@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'semantic-ui-react'
+import { List, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 
@@ -15,7 +15,9 @@ class Comment extends React.Component {
 			<List.Item>
 				<List.Content>
 					<List.Header>{artist.name}</List.Header>
-					<List.Description>{this.props.content}</List.Description>
+					<List.Description>
+						{this.props.content} {/*<Button size='mini' icon='delete' />*/}
+					</List.Description>
 				</List.Content>
 			</List.Item>
 		)
@@ -24,7 +26,8 @@ class Comment extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		artists: state.artists
+		artists: state.artists,
+		currentUser: state.currentUser
 	}
 }
 

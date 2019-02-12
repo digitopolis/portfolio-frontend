@@ -3,13 +3,14 @@ import Work from './Work'
 import { PROFILE } from '../apiEndpoints'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import { Grid, Image, Header, List, Button } from 'semantic-ui-react'
+import { Grid, Image, Header, List, Button, Menu } from 'semantic-ui-react'
 
 class UserProfile extends React.Component {
 
 	state = {
 		newWork: false,
-		editProfile: false
+		editProfile: false,
+		activeItem: 'profile'
 	}
 
 	componentDidMount() {

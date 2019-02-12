@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import { WORKS } from '../apiEndpoints'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
@@ -39,9 +39,15 @@ class NewWork extends React.Component {
 
 	}
 
+	handleCancel = () => {
+		this.setState({
+			submitted: true
+		})
+	}
+
 	render () {
 		if (this.state.submitted) {
-			return <Redirect to='/'/>
+			return <Redirect to='/profile'/>
 		}
 		return (
 			<Form
@@ -79,7 +85,14 @@ class NewWork extends React.Component {
 					placeholder="Artist's statement or description of work, etc."
 					onChange={this.handleChange}
 				/>
-				<Form.Button>Submit</Form.Button>
+				<Button type='submit'>Submit</Button>
+				<Button
+					secondary
+					type='button'
+					onClick={this.handleCancel}
+				>
+					Cancel
+				</Button>
 			</Form>
 		)
 	}
