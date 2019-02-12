@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Image } from 'semantic-ui-react'
+import { Card, Image, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class Work extends React.Component {
@@ -14,10 +14,12 @@ class Work extends React.Component {
 				<Image src={this.props.img_url}/>
 				<Card.Content>
 					<Card.Header>{this.props.title}</Card.Header>
-					<Card.Meta>{this.props.media}</Card.Meta>
+					<Card.Meta>{this.props.year} | {this.props.media}</Card.Meta>
 					<Card.Description>{`${this.props.statement.slice(0, 200)}...`}</Card.Description>
 				</Card.Content>
-				<Card.Content extra>{this.props.year}</Card.Content>
+				<Card.Content extra>
+					<Icon name='comments'/> {this.props.comments.length}
+				</Card.Content>
 			</Card>
 		)
 	}
