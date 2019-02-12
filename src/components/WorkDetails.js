@@ -9,12 +9,14 @@ class WorkDetails extends React.Component {
 
 	handleDelete = () => {
 		const id = this.props.work.id
+		const jwt = localStorage.getItem('jwt')
 		this.props.deselectWork()
 		fetch(WORKS + id, {
 			method: 'DELETE',
 			headers: {
 				'Content-Type': 'application/json',
-				'Accept': 'application/json'
+				'Accept': 'application/json',
+				'Authorization': `Bearer ${jwt}`
 			}
 		}).then(() => this.props.deleteWork(id))
 	}
