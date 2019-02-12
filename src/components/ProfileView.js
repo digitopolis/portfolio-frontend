@@ -1,10 +1,42 @@
 import React from 'react'
 import Work from './Work'
+import { ARTISTS } from '../apiEndpoints'
 import { Grid, Image, Header, List, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+import { Redirect } from 'react-router'
+import { Link } from 'react-router-dom'
 
 class ProfileView extends React.Component {
+
+	state = {
+		deleted: false
+	}
+
+	handleDelete = () => {
+		const jwt = localStorage.getItem('jwt')
+		const id = this.props.artist.id
+		fetch(`${ARTISTS}/${id}`, {
+			method: 'DELETE',
+			headers: {
+				'Authorization': `Bearer ${jwt}`
+			}
+		}).then(res => this.handleResponse(res, id))
+	}
+
+	handleResponse = (res, id) => {
+		console.log(res, id)
+		this.props.deleteArtist(id)
+		this.props.logout()
+		this.setState({
+			deleted: true
+		})
+	}
+
 	render () {
+		if (this.state.deleted) {
+			return <Redirect to='/'/>
+		}
+
 		return (
 			<Grid celled='internally'>
 				<Grid.Row>
@@ -43,6 +75,14 @@ class ProfileView extends React.Component {
 						<Header size='large'>{this.props.artist.bio}</Header>
 						<Button onClick={this.props.newWork}>+ add work</Button>
 						<Button onClick={this.props.edit}>Edit profile</Button>
+						<Button
+							as={ Link }
+							to='/'
+							secondary
+							onClick={this.handleDelete}
+						>
+							Delete account
+						</Button>
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>
@@ -62,4 +102,11 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(ProfileView);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		deleteArtist: (artist) => dispatch({ type: 'DELETE_ARTIST', payload: artist }),
+		logout: () => dispatch({ type: 'LOGOUT' })
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileView);

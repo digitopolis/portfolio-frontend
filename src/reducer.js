@@ -49,6 +49,14 @@ const	reducer = (state = defaultState, action) => {
 		case 'ADD_COMMENT':
 			return {...state,
 				works: [...state.works.filter(w => w.id !== action.payload.id), action.payload].sort((a,b) => a.id - b.id)}
+		case 'DELETE_ARTIST':
+			return {...state,
+				artists: [state.artists.filter(a => a.id !== action.payload)]}
+		case 'LOGOUT':
+			return {...state,
+				selectedArtist: null,
+				selectedWork: null,
+				currentUser: null}
 		default:
 			return state
 	}
