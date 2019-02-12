@@ -76,8 +76,6 @@ class ProfileView extends React.Component {
 						<Button onClick={this.props.newWork}>+ add work</Button>
 						<Button onClick={this.props.edit}>Edit profile</Button>
 						<Button
-							as={ Link }
-							to='/'
 							secondary
 							onClick={this.handleDelete}
 						>
