@@ -51,8 +51,9 @@ class Login extends React.Component {
 	}
 
 	render () {
+		//if artist or work is selected show main page, otherwise profile
 		if (this.state.loggedIn) {
-			return <Redirect to='/profile'/>
+			return this.props.selectedWork || this.props.selectedArtist ? <Redirect to='/'/> : <Redirect to='/profile'/>
 		}
 		return (
 			<div className='centered'>
@@ -84,10 +85,17 @@ class Login extends React.Component {
 	}
 }
 
+const mapStateToProps = (state) => {
+	return {
+		selectedArtist: state.selectedArtist,
+		selectedWork: state.selectWork
+	}
+}
+
 const mapDispatchToProps = (dispatch) => {
 	return {
 		loginUser: (user) => dispatch({type: 'USER_LOGIN', payload: user})
 	}
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

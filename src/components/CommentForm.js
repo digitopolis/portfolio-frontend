@@ -34,7 +34,9 @@ class CommentForm extends React.Component {
 	}
 
 	handleResponse = (res) => {
-		console.log(res);
+		let work = this.props.works.find(w => w.id === this.props.work)
+		work.comments = [...work.comments, res]
+		console.log(res, work);
 		//find the work, add the new comment to the comments, then dispatch updated work to reducer to update store
 	}
 
@@ -56,7 +58,8 @@ class CommentForm extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		artist: state.currentUser.id,
-		work: state.selectedWork
+		work: state.selectedWork,
+		works: state.works
 	}
 }
 
