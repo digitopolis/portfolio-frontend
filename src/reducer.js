@@ -35,7 +35,7 @@ const	reducer = (state = defaultState, action) => {
 				works: [...state.works, action.payload]}
 		case 'DELETE_WORK':
 			return {...state,
-			works: state.works.filter(w => w.id !== action.payload)}
+				works: state.works.filter(w => w.id !== action.payload)}
 		case 'FILTER_ARTISTS':
 			return {...state,
 				filteredArtists: state.artists.filter(a => a.media.toLowerCase().includes(action.payload)),
@@ -46,6 +46,9 @@ const	reducer = (state = defaultState, action) => {
 		case 'UPDATE_ARTIST':
 			return {...state,
 				artists: [...state.artists.filter(a => a.id !== action.payload.id), action.payload]}
+		case 'ADD_COMMENT':
+			return {...state,
+				works: [...state.works.filter(w => w.id !== action.payload.id), action.payload].sort((a,b) => a.id - b.id)}
 		default:
 			return state
 	}

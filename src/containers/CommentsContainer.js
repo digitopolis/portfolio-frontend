@@ -30,16 +30,22 @@ class CommentsContainer extends React.Component {
 		})
 	}
 
+	postComment = () => {
+		this.setState({
+			newComment: false
+		})
+	}
+
 	render() {
 		return (
 			<div>
 				<List divided size='huge'>
-					{this.props.comments.map(comment => {
+					{this.props.work.comments.map(comment => {
 						return <Comment key={comment.id} {...comment}/>
 					})}
 				</List>
 				{this.addComments()}
-				{this.state.newComment ? <CommentForm /> : null}
+				{this.state.newComment ? <CommentForm post={this.postComment}/> : null}
 			</div>
 		)
 	}
@@ -47,7 +53,8 @@ class CommentsContainer extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		currentUser: state.currentUser
+		currentUser: state.currentUser,
+		work: state.works.find(w => w.id === state.selectedWork)
 	}
 }
 

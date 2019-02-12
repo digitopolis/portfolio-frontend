@@ -51,7 +51,6 @@ class Login extends React.Component {
 	}
 
 	render () {
-		//if artist or work is selected show main page, otherwise profile
 		if (this.state.loggedIn) {
 			return this.props.selectedWork || this.props.selectedArtist ? <Redirect to='/'/> : <Redirect to='/profile'/>
 		}

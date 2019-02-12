@@ -2,6 +2,7 @@ import React from 'react'
 import { COMMENTS } from '../apiEndpoints'
 import { Segment, Form } from 'semantic-ui-react'
 import { connect } from 'react-redux'
+// import { Redirect } from 'react-router'
 
 
 class CommentForm extends React.Component {
@@ -36,7 +37,8 @@ class CommentForm extends React.Component {
 	handleResponse = (res) => {
 		let work = this.props.works.find(w => w.id === this.props.work)
 		work.comments = [...work.comments, res]
-		console.log(res, work);
+		this.props.updateComments(work)
+		this.props.post()
 		//find the work, add the new comment to the comments, then dispatch updated work to reducer to update store
 	}
 
@@ -63,4 +65,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(CommentForm);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		updateComments: (work) => dispatch({ type: 'ADD_COMMENT', payload: work })
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CommentForm);
