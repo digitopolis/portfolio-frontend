@@ -26,11 +26,14 @@ class NewWork extends React.Component {
 	handleSubmit = () => {
 		const {submitted, ...data} = this.state
 		const workInfo = {...data, artist_id: this.props.artist}
+		const jwt = localStorage.getItem('jwt')
+		console.log(workInfo);
 		fetch(WORKS, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
-				'Accept': 'application/json'
+				'Accept': 'application/json',
+				'Authorization': `Bearer ${jwt}`
 			},
 			body: JSON.stringify(workInfo)
 		}).then(res => res.json())
@@ -100,7 +103,7 @@ class NewWork extends React.Component {
 
 const mapStateToProps = (state) => {
 	return {
-		artist: state.selectedArtist
+		artist: state.currentUser.id
 	}
 }
 

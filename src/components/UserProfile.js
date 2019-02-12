@@ -1,9 +1,10 @@
 import React from 'react'
-import Work from './Work'
+import UserComments from '../containers/UserComments'
+import ProfileView from './ProfileView'
 import { PROFILE } from '../apiEndpoints'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import { Grid, Image, Header, List, Button, Menu } from 'semantic-ui-react'
+import { Menu } from 'semantic-ui-react'
 
 class UserProfile extends React.Component {
 
@@ -34,6 +35,10 @@ class UserProfile extends React.Component {
 		this.setState({ editProfile })
 	}
 
+	handleItemClick = (event, { name }) => {
+		this.setState({ activeItem: name })
+	}
+
 	render () {
 		if (this.state.newWork) {
 			return <Redirect to='/new_work' />
@@ -42,51 +47,66 @@ class UserProfile extends React.Component {
 			return <Redirect to='/profile/edit' />
 		}
 		return (
-			<Grid celled='internally'>
-				<Grid.Row>
-					<Grid.Column textAlign='center'>
-						<Header size='large'>{this.props.artist.name}</Header>
-						<Image
-							centered
-							rounded
-							size='medium'
-							src={this.props.artist.img_url}
-						/>
-						<div>
-							<List horizontal divided>
-								<List.Item>
-									<List.Content>{this.props.artist.location}</List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>{this.props.artist.media}</List.Content>
-								</List.Item>
-							</List>
-						</div>
-						<div>
-							<List horizontal>
-								<List.Item>
-									<List.Content>
-										<List.Icon link name='twitter'/>
-									</List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>
-										<List.Icon link name='instagram'/>
-									</List.Content>
-								</List.Item>
-							</List>
-						</div>
-						<Header size='large'>{this.props.artist.bio}</Header>
-						<Button onClick={this.newWorkForm}>+ add work</Button>
-						<Button onClick={this.editProfile}>Edit profile</Button>
-					</Grid.Column>
-				</Grid.Row>
-				<Grid.Row>
-					{this.props.works.map(work => {
-						return <Work key={work.id} {...work} />
-					})}
-				</Grid.Row>
-			</Grid>
+			<div>
+				<Menu tabular>
+					<Menu.Item
+						name='profile'
+						active={this.state.activeItem === 'profile'}
+						onClick={this.handleItemClick} />
+					<Menu.Item
+						name='comments'
+						active={this.state.activeItem === 'comments'}
+						onClick={this.handleItemClick} />
+				</Menu>
+
+				{this.state.activeItem === 'profile' ? <ProfileView newWork={this.newWorkForm} edit={this.editProfile}/> : <UserComments />}
+			</div>
+
+			// <Grid celled='internally'>
+			// 	<Grid.Row>
+			// 		<Grid.Column textAlign='center'>
+			// 			<Header size='large'>{this.props.artist.name}</Header>
+			// 			<Image
+			// 				centered
+			// 				rounded
+			// 				size='medium'
+			// 				src={this.props.artist.img_url}
+			// 			/>
+			// 			<div>
+			// 				<List horizontal divided>
+			// 					<List.Item>
+			// 						<List.Content>{this.props.artist.location}</List.Content>
+			// 					</List.Item>
+			// 					<List.Item>
+			// 						<List.Content>{this.props.artist.media}</List.Content>
+			// 					</List.Item>
+			// 				</List>
+			// 			</div>
+			// 			<div>
+			// 				<List horizontal>
+			// 					<List.Item>
+			// 						<List.Content>
+			// 							<List.Icon link name='twitter'/>
+			// 						</List.Content>
+			// 					</List.Item>
+			// 					<List.Item>
+			// 						<List.Content>
+			// 							<List.Icon link name='instagram'/>
+			// 						</List.Content>
+			// 					</List.Item>
+			// 				</List>
+			// 			</div>
+			// 			<Header size='large'>{this.props.artist.bio}</Header>
+			// 			<Button onClick={this.newWorkForm}>+ add work</Button>
+			// 			<Button onClick={this.editProfile}>Edit profile</Button>
+			// 		</Grid.Column>
+			// 	</Grid.Row>
+			// 	<Grid.Row>
+			// 		{this.props.works.map(work => {
+			// 			return <Work key={work.id} {...work} />
+			// 		})}
+			// 	</Grid.Row>
+			// </Grid>
 		)
 	}
 }
