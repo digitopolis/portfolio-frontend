@@ -1,10 +1,10 @@
 import React from 'react'
 import Work from './Work'
 import { ARTISTS } from '../apiEndpoints'
-import { Grid, Image, Header, List, Button } from 'semantic-ui-react'
+import { Grid, Image, Header, List, Button, Icon } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-// import { Link } from 'react-router-dom'
+
 
 class ProfileView extends React.Component {
 
@@ -59,18 +59,10 @@ class ProfileView extends React.Component {
 							</List>
 						</div>
 						<div>
-							<List horizontal>
-								<List.Item>
-									<List.Content>
-										<List.Icon link name='twitter'/>
-									</List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>
-										<List.Icon link name='instagram'/>
-									</List.Content>
-								</List.Item>
-							</List>
+							<a href={`http://www.twitter.com/${this.props.artist.twitter}`}>
+								<Icon size='big' link name='twitter'/></a>
+							<a href={`http://www.instagram.com/${this.props.artist.instagram}`}>
+								<Icon size='big' link name='instagram'/></a>
 						</div>
 						<Header size='large'>{this.props.artist.bio}</Header>
 						<Button onClick={this.props.newWork}>+ add work</Button>

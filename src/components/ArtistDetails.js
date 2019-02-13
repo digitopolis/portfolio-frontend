@@ -2,7 +2,7 @@ import React from 'react'
 import Work from './Work'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import { Grid, Image, Header, List, Button } from 'semantic-ui-react'
+import { Grid, Image, Header, List, Button, Icon } from 'semantic-ui-react'
 
 class ArtistDetails extends React.Component {
 
@@ -33,26 +33,18 @@ class ArtistDetails extends React.Component {
 						<div>
 							<List horizontal divided>
 								<List.Item>
-									<List.Content>{this.props.artist.location}</List.Content>
+									<List.Content as='h3'>{this.props.artist.location}</List.Content>
 								</List.Item>
 								<List.Item>
-									<List.Content>{this.props.artist.media}</List.Content>
+									<List.Content as='h3'>{this.props.artist.media}</List.Content>
 								</List.Item>
 							</List>
 						</div>
 						<div>
-							<List horizontal>
-								<List.Item>
-									<List.Content>
-										<List.Icon link name='twitter'/>
-									</List.Content>
-								</List.Item>
-								<List.Item>
-									<List.Content>
-										<List.Icon link name='instagram'/>
-									</List.Content>
-								</List.Item>
-							</List>
+								<a href={`http://www.twitter.com/${this.props.artist.twitter}`}>
+									<Icon size='big' link name='twitter'/></a>
+								<a href={`http://www.instagram.com/${this.props.artist.instagram}`}>
+									<Icon size='big' link name='instagram'/></a>
 						</div>
 						<Header size='large'>{this.props.artist.bio}</Header>
 						{this.props.currentUser && this.props.artist.id === this.props.currentUser.id ? <Button onClick={this.newWorkForm}>+ add work</Button> : null}
