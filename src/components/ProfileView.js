@@ -4,7 +4,7 @@ import { ARTISTS } from '../apiEndpoints'
 import { Grid, Image, Header, List, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 
 class ProfileView extends React.Component {
 
@@ -75,12 +75,12 @@ class ProfileView extends React.Component {
 						<Header size='large'>{this.props.artist.bio}</Header>
 						<Button onClick={this.props.newWork}>+ add work</Button>
 						<Button onClick={this.props.edit}>Edit profile</Button>
-						<Button
+						{/*<Button
 							secondary
 							onClick={this.handleDelete}
 						>
 							Delete account
-						</Button>
+						</Button>*/}
 					</Grid.Column>
 				</Grid.Row>
 				<Grid.Row>

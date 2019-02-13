@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form } from 'semantic-ui-react'
+import { Form, Button } from 'semantic-ui-react'
 import { connect } from 'react-redux'
 
 class Filter extends React.Component {
@@ -17,6 +17,11 @@ class Filter extends React.Component {
 		this.setState({ search })
 	}
 
+	handleClear = () => {
+		this.props.setFilter('')
+		this.setState({ search: '' })
+	}
+
 	render () {
 		return (
 			<div>
@@ -29,6 +34,7 @@ class Filter extends React.Component {
 						value={this.state.search}
 						/>
 				</Form>
+				<Button onClick={this.handleClear}>Clear</Button>
 			</div>
 		)
 	}
