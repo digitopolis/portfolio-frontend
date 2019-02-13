@@ -1,6 +1,7 @@
 import React from 'react'
 import UserComments from '../containers/UserComments'
 import ProfileView from './ProfileView'
+import WorkDetails from './WorkDetails'
 import { PROFILE } from '../apiEndpoints'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router'
@@ -22,7 +23,7 @@ class UserProfile extends React.Component {
 				'Authorization': `Bearer ${jwt}`
 			}
 		}).then(res => res.json())
-		.then(console.log)
+		.then(res => this.props.selectArtist(res.artist))
 	}
 
 	newWorkForm = () => {
@@ -45,6 +46,9 @@ class UserProfile extends React.Component {
 		}
 		if (this.state.editProfile) {
 			return <Redirect to='/profile/edit' />
+		}
+		if (this.props.works.find(w => w.id === this.props.selectedWork)) {
+			return <WorkDetails />
 		}
 		return (
 			<div>
@@ -114,8 +118,15 @@ class UserProfile extends React.Component {
 const mapStateToProps = (state) => {
 	return {
 		artist: state.artists.find(a => a.id === state.currentUser.id),
-		works: state.works.filter(w => w.artist_id === state.currentUser.id)
+		works: state.works.filter(w => w.artist_id === state.currentUser.id),
+		selectedWork: state.selectedWork
 	}
 }
 
-export default connect(mapStateToProps)(UserProfile);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		selectArtist: (artist) => dispatch({type: 'SELECT_ARTIST', payload: artist})
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserProfile);

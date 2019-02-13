@@ -59,9 +59,10 @@ class Login extends React.Component {
 				<Segment
 					className='login'
 					style={{backgroundColor: '#eaeaea'}}>
-					<h1>log in!</h1>
+					<h1>Log in:</h1>
 					{this.state.message === '' ? null : <h3>{this.state.message}</h3>}
 					<Form
+						size='big'
 						onSubmit={this.handleSubmit}>
 						<Form.Input
 							name='username'

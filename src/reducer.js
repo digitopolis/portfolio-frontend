@@ -11,7 +11,7 @@ const	reducer = (state = defaultState, action) => {
 	switch (action.type) {
 		case 'FETCH_ARTISTS':
 			return {...state,
-				artists: action.payload}
+				artists: action.payload.sort((a,b) => a.id - b.id)}
 		case 'FETCH_WORKS':
 			return {...state,
 				works: action.payload}
@@ -23,7 +23,8 @@ const	reducer = (state = defaultState, action) => {
 				selectedArtist: null}
 		case 'ADD_ARTIST':
 			return {...state,
-				artists: [...state.artists, action.payload]}
+				artists: [...state.artists, action.payload],
+				filtering: false}
 		case 'SELECT_WORK':
 			return {...state,
 				selectedWork: action.payload}
