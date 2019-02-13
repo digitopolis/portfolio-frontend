@@ -33,11 +33,49 @@ class App extends Component {
 		// return <Redirect to='/'/>
 	}
 
+	signupOrLogIn = () => {
+		return (
+			<Fragment>
+				<Menu.Item
+					as={ Link }
+					to='/new'
+				>
+					Signup
+				</Menu.Item>
+				<Menu.Item
+					as={ Link }
+					to='/login'
+				>
+					Login
+				</Menu.Item>
+			</Fragment>
+		)
+	}
+
+	logoutButton = () => {
+		return (
+			<Menu.Item
+				as={ Link }
+				to='/'
+				position='right'
+				onClick={this.handleLogout}
+			>
+				Log out
+			</Menu.Item>
+		)
+	}
+
+	handleLogout = () => {
+		this.returnHome()
+		this.props.logout()
+	}
+
   render() {
     return (
 			<div id='main'>
 				<Router>
 					<Fragment>
+						{/*loggedOutMenu()*/}
 						<Menu size='huge'>
 							<Menu.Item
 								as={ Link }
@@ -46,7 +84,8 @@ class App extends Component {
 							>
 								Home
 							</Menu.Item>
-							<Menu.Item
+							{this.props.currentUser ? <Menu.Item as={ Link } to='/profile'>Profile</Menu.Item> : this.signupOrLogIn()}
+							{/*<Menu.Item
 								as={ Link }
 								to='/new'
 							>
@@ -63,7 +102,8 @@ class App extends Component {
 								to='/profile'
 							>
 								Profile
-							</Menu.Item>
+							</Menu.Item>*/}
+							{this.props.currentUser ? this.logoutButton() : null}
 						</Menu>
 						<h1>Portfolio</h1>
 						<Segment>
@@ -91,7 +131,8 @@ const	mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		deselectWork: () => dispatch({type: 'DESELECT_WORK'}),
-		deselectArtist: () => dispatch({type: 'DESELECT_ARTIST'})
+		deselectArtist: () => dispatch({type: 'DESELECT_ARTIST'}),
+		logout: () => dispatch({ type: 'LOGOUT' })
 	}
 }
 

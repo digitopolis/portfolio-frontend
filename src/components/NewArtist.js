@@ -59,11 +59,11 @@ class NewArtist extends React.Component {
 
 	render () {
 		if (this.state.submitted) {
-			return <Redirect to='/' />
+			return <Redirect to='/profile' />
 		}
 		return (
 			<Segment>
-				<Form onSubmit={this.handleSubmit}>
+				<Form size='big' onSubmit={this.handleSubmit}>
 					<Form.Group widths='equal'>
 						<Form.Input
 							required
@@ -131,7 +131,7 @@ class NewArtist extends React.Component {
 					/>
 				<Form.Button>Submit</Form.Button>
 				</Form>
-				<Message attached='bottom' warning>
+				<Message size='large' attached='bottom' warning>
 					<Icon name='help' />
 					Already signed up?&nbsp;<Link to='/login'>Login here</Link>&nbsp;instead.
 				</Message>

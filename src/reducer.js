@@ -55,8 +55,6 @@ const	reducer = (state = defaultState, action) => {
 				artists: [state.artists.filter(a => a.id !== action.payload)]}
 		case 'LOGOUT':
 			return {...state,
-				selectedArtist: null,
-				selectedWork: null,
 				currentUser: null}
 		default:
 			return state
