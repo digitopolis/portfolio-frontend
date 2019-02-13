@@ -40,7 +40,7 @@ class WorkDetails extends React.Component {
 					<Grid.Column width={4}>
 						<List>
 							<List.Item>
-								<List.Header>{this.props.work.title}</List.Header>
+								<List.Header as='h2'>{this.props.work.title}</List.Header>
 							</List.Item>
 							<List.Item>
 								<List.Icon name='user' />
@@ -55,7 +55,7 @@ class WorkDetails extends React.Component {
 								<List.Content>{this.props.work.media}</List.Content>
 							</List.Item>
 							<List.Item>
-								<List.Content>{this.props.work.statement}</List.Content>
+								<List.Content as='h3'>{this.props.work.statement}</List.Content>
 							</List.Item>
 						</List>
 						{this.props.currentUser && this.props.artist.id === this.props.currentUser.id ? <Button onClick={this.handleDelete}>Delete</Button> : null}
